@@ -1,0 +1,53 @@
+{
+    "name": "githubjeka/rest-yii2",
+    "description": "Yii 2 Rest Api Template",
+    "keywords": ["yii2", "rest", "application template", "api"],
+    "homepage": "https://github.com/githubjeka/yii2-rest",
+    "type": "project",
+    "license": "BSD-4-Clause",
+    "authors": [
+        {
+            "name": "Evgeniy Tkachenko",
+            "email": "et.coder@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/githubjeka/yii2-rest/issues",
+        "source": "https://github.com/githubjeka/yii2-rest"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*"
+    },
+    "require-dev": {
+        "yiisoft/yii2-codeception": "*",
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*"
+    },
+    "suggest": {
+        "codeception/codeception": "Codeception, 2.0.* is currently works well with Yii.",
+        "codeception/specify": "BDD style code blocks for PHPUnit and Codeception",
+        "codeception/verify": "BDD Assertions for PHPUnit and Codeception"
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::setPermission",
+            "yii\\composer\\Installer::generateCookieValidationKey"
+        ]
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+    "extra": {
+        "writable": [
+            "backend/runtime",
+            "backend/web/assets",
+            "rest/runtime"
+        ],
+        "config": [
+            "environments/dev/rest/config/main-local.php"
+        ]
+    }
+}
