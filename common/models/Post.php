@@ -19,6 +19,10 @@ use yii\db\ActiveRecord;
  */
 class Post extends ActiveRecord
 {
+    const STATUS_DRAFT = 1;
+    const STATUS_PUBLISHED = 2;
+    const STATUS_ARCHIVE = 3;
+
     /**
      * @inheritdoc
      */

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e638877cc3dadf548276828d4cd2bad6",
+    "hash": "c7b3668c4699d0cf5b1261edb1dbd88a",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -139,12 +139,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/jquery-pjax.git",
-                "reference": "520f8c12b5a417e21d2cd0df499fa2a4e4e9a9d6"
+                "reference": "98caa41b39c0d8ab6fd4451ed249de7c0d05256a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/520f8c12b5a417e21d2cd0df499fa2a4e4e9a9d6",
-                "reference": "520f8c12b5a417e21d2cd0df499fa2a4e4e9a9d6",
+                "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/98caa41b39c0d8ab6fd4451ed249de7c0d05256a",
+                "reference": "98caa41b39c0d8ab6fd4451ed249de7c0d05256a",
                 "shasum": ""
             },
             "require": {
@@ -157,7 +157,7 @@
             ],
             "description": "pushState + ajax = pjax, a forked maintainted by the Yii Framework core developers",
             "homepage": "https://github.com/yiisoft/jquery-pjax#readme",
-            "time": "2014-03-20 17:20:33"
+            "time": "2014-09-02 18:40:28"
         },
         {
             "name": "yiisoft/yii2",
@@ -165,12 +165,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "3af1928f9ecd75744e7fcaf8f46a150fa916ac50"
+                "reference": "f00bb10bd4230b8d25ff57968e56a40fdbf8877b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/3af1928f9ecd75744e7fcaf8f46a150fa916ac50",
-                "reference": "3af1928f9ecd75744e7fcaf8f46a150fa916ac50",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/f00bb10bd4230b8d25ff57968e56a40fdbf8877b",
+                "reference": "f00bb10bd4230b8d25ff57968e56a40fdbf8877b",
                 "shasum": ""
             },
             "require": {
@@ -238,7 +238,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-07-30 11:29:01"
+            "time": "2014-09-12 09:01:00"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -246,12 +246,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-composer.git",
-                "reference": "4806202b6c090f261c6f2e002c792b18dcc6fe8e"
+                "reference": "f205416b9e4698af823c4ea6ec661a847188d5cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/4806202b6c090f261c6f2e002c792b18dcc6fe8e",
-                "reference": "4806202b6c090f261c6f2e002c792b18dcc6fe8e",
+                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/f205416b9e4698af823c4ea6ec661a847188d5cf",
+                "reference": "f205416b9e4698af823c4ea6ec661a847188d5cf",
                 "shasum": ""
             },
             "require": {
@@ -282,10 +282,60 @@
                 "extension installer",
                 "yii2"
             ],
-            "time": "2014-07-29 22:40:46"
+            "time": "2014-09-03 03:17:50"
         }
     ],
     "packages-dev": [
+        {
+            "name": "fzaninotto/faker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "01109315e2bca979d2bb1c88260fde036864c0c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/01109315e2bca979d2bb1c88260fde036864c0c6",
+                "reference": "01109315e2bca979d2bb1c88260fde036864c0c6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Faker": "src/",
+                    "Faker\\PHPUnit": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2014-09-09 17:33:15"
+        },
         {
             "name": "phpspec/php-diff",
             "version": "dev-master",
@@ -326,12 +376,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "fc1db2e74b16b355656512eafd39f667f383a8a9"
+                "reference": "cabace78da29dd2b2928ca5f42e6a2a80307ee34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/fc1db2e74b16b355656512eafd39f667f383a8a9",
-                "reference": "fc1db2e74b16b355656512eafd39f667f383a8a9",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/cabace78da29dd2b2928ca5f42e6a2a80307ee34",
+                "reference": "cabace78da29dd2b2928ca5f42e6a2a80307ee34",
                 "shasum": ""
             },
             "replace": {
@@ -369,7 +419,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2014-07-29 00:47:51"
+            "time": "2014-09-11 21:43:27"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -377,12 +427,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "83489d3684485543d1fdbe6594da10c3f1f61b85"
+                "reference": "a3ab453aa0d5e0b493207928ea220e83a6a0ae69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/83489d3684485543d1fdbe6594da10c3f1f61b85",
-                "reference": "83489d3684485543d1fdbe6594da10c3f1f61b85",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/a3ab453aa0d5e0b493207928ea220e83a6a0ae69",
+                "reference": "a3ab453aa0d5e0b493207928ea220e83a6a0ae69",
                 "shasum": ""
             },
             "require": {
@@ -410,7 +460,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2014-07-29 22:40:46"
+            "time": "2014-09-05 17:37:52"
         },
         {
             "name": "yiisoft/yii2-codeception",
@@ -418,12 +468,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-codeception.git",
-                "reference": "b20673b381a6f3c3180ec8b6f1ba11e3572a6938"
+                "reference": "9b2a01ff4798c683d1c85f74b9969cf68f7c482b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-codeception/zipball/b20673b381a6f3c3180ec8b6f1ba11e3572a6938",
-                "reference": "b20673b381a6f3c3180ec8b6f1ba11e3572a6938",
+                "url": "https://api.github.com/repos/yiisoft/yii2-codeception/zipball/9b2a01ff4798c683d1c85f74b9969cf68f7c482b",
+                "reference": "9b2a01ff4798c683d1c85f74b9969cf68f7c482b",
                 "shasum": ""
             },
             "require": {
@@ -450,7 +500,7 @@
                 "codeception",
                 "yii2"
             ],
-            "time": "2014-07-29 22:40:46"
+            "time": "2014-09-12 10:42:54"
         },
         {
             "name": "yiisoft/yii2-debug",
@@ -458,12 +508,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "bdb341073b9d9b8325ced6ade8fcb916906f0205"
+                "reference": "9c96250d43fc85324bfdc7dd24b4df25640ff782"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/bdb341073b9d9b8325ced6ade8fcb916906f0205",
-                "reference": "bdb341073b9d9b8325ced6ade8fcb916906f0205",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/9c96250d43fc85324bfdc7dd24b4df25640ff782",
+                "reference": "9c96250d43fc85324bfdc7dd24b4df25640ff782",
                 "shasum": ""
             },
             "require": {
@@ -492,7 +542,49 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2014-07-29 22:40:46"
+            "time": "2014-09-11 16:43:52"
+        },
+        {
+            "name": "yiisoft/yii2-faker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-faker.git",
+                "reference": "4b4d43158e7c190b2116aa9b70bd3f068d154e19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-faker/zipball/4b4d43158e7c190b2116aa9b70bd3f068d154e19",
+                "reference": "4b4d43158e7c190b2116aa9b70bd3f068d154e19",
+                "shasum": ""
+            },
+            "require": {
+                "fzaninotto/faker": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yii\\faker\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Jebri",
+                    "email": "mark.github@yandex.ru"
+                }
+            ],
+            "description": "Fixture generator. The Faker integration for the Yii framework.",
+            "keywords": [
+                "Fixture",
+                "faker",
+                "yii2"
+            ],
+            "time": "2014-09-06 00:26:02"
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -500,12 +592,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "2828b6116a0ba702f1e2002de2ea7aad749d6bcc"
+                "reference": "78b43923367a764f65a4471248f8eb9645f122f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/2828b6116a0ba702f1e2002de2ea7aad749d6bcc",
-                "reference": "2828b6116a0ba702f1e2002de2ea7aad749d6bcc",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/78b43923367a764f65a4471248f8eb9645f122f2",
+                "reference": "78b43923367a764f65a4471248f8eb9645f122f2",
                 "shasum": ""
             },
             "require": {
@@ -535,21 +627,15 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2014-07-29 22:40:46"
+            "time": "2014-09-10 10:15:59"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [
-
-    ],
+    "stability-flags": [],
     "prefer-stable": false,
     "platform": {
         "php": ">=5.4.0"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }

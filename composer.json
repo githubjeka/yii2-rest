@@ -24,30 +24,10 @@
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
         "yiisoft/yii2-debug": "*",
-        "yiisoft/yii2-gii": "*"
-    },
-    "suggest": {
-        "codeception/codeception": "Codeception, 2.0.* is currently works well with Yii.",
-        "codeception/specify": "BDD style code blocks for PHPUnit and Codeception",
-        "codeception/verify": "BDD Assertions for PHPUnit and Codeception"
-    },
-    "scripts": {
-        "post-create-project-cmd": [
-            "yii\\composer\\Installer::setPermission",
-            "yii\\composer\\Installer::generateCookieValidationKey"
-        ]
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-faker": "*"
     },
     "config": {
         "process-timeout": 1800
-    },
-    "extra": {
-        "writable": [
-            "backend/runtime",
-            "backend/web/assets",
-            "rest/runtime"
-        ],
-        "config": [
-            "environments/dev/rest/config/main-local.php"
-        ]
     }
 }
