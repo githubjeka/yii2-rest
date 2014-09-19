@@ -1,5 +1,7 @@
 ## Test REST API application on [Yii2](https://github.com/yiisoft/yii2)
 
+[![Build Status](https://travis-ci.org/githubjeka/yii2-rest.svg)](https://travis-ci.org/githubjeka/yii2-rest)
+
 ###INSTALLATION###
 
 **Install via Composer**
