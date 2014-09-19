@@ -1,0 +1,13 @@
+language: php
+php:
+  - 5.4
+  - 5.5
+  - 5.6
+  - hhvm
+  - hhvm-nightly
+  
+install:
+  - composer self-update && composer --version
+  - composer global require "fxp/composer-asset-plugin:1.0.*@dev"
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  - composer install --prefer-dist
