@@ -21,7 +21,6 @@ class Post extends ActiveRecord
 {
     const STATUS_DRAFT = 1;
     const STATUS_PUBLISHED = 2;
-    const STATUS_ARCHIVE = 3;
 
     /**
      * @inheritdoc
@@ -47,9 +46,16 @@ class Post extends ActiveRecord
     public function rules()
     {
         return [
+            [
+                ['title', 'content'],
+                'filter',
+                'filter' => function ($value) {
+                    return \Yii::$app->formatter->asHtml($value);
+                }
+            ],
             [['title', 'content', 'status'], 'required'],
             [['content', 'tags'], 'string'],
-            [['status'], 'integer'],
+            [['status'], 'in', 'range' => [self::STATUS_DRAFT, self::STATUS_PUBLISHED]],
             [['title'], 'string', 'max' => 128]
         ];
     }
@@ -69,7 +75,13 @@ class Post extends ActiveRecord
             'content',
             'tags',
             'status',
-            'author'
+            'author',
+            'created_at' => function () {
+                return date('d-m-y H:i', $this->created_at);
+            },
+            'updated_at' => function () {
+                return date('d-m-y H:i', $this->updated_at);
+            },
         ];
     }
 
@@ -93,5 +105,10 @@ class Post extends ActiveRecord
     public function getAuthor()
     {
         return $this->hasOne(User::className(), ['id' => 'author_id']);
+    }
+
+    public function getComments()
+    {
+        return $this->hasMany(Comment::className(), ['post_id' => 'id']);
     }
 }

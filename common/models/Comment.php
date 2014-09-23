@@ -2,16 +2,15 @@
 
 namespace common\models;
 
+use yii\behaviors\TimestampBehavior;
+
 /**
  * This is the model class for table "tbl_comment".
  *
  * @property integer $id
  * @property string $content
- * @property integer $status
- * @property integer $create_time
- * @property string $author
- * @property string $email
- * @property string $url
+ * @property integer $created_at
+ * @property integer $updated_at
  * @property integer $post_id
  */
 class Comment extends \yii\db\ActiveRecord
@@ -21,7 +20,17 @@ class Comment extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'tbl_comment';
+        return '{{%comment}}';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
     }
 
     /**
@@ -30,10 +39,16 @@ class Comment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['content', 'status', 'author', 'email', 'post_id'], 'required'],
-            [['content'], 'string'],
-            [['status', 'create_time', 'post_id'], 'integer'],
-            [['author', 'email', 'url'], 'string', 'max' => 128]
+            [
+                ['content'],
+                'filter',
+                'filter' => function ($value) {
+                    return \Yii::$app->formatter->asHtml($value);
+                }
+            ],
+            [['content', 'post_id'], 'required'],
+            [['content'], 'string', 'max' => 128],
+            [['post_id'], 'exist', 'targetClass' => Post::className(), 'targetAttribute' => 'id'],
         ];
     }
 
@@ -45,12 +60,18 @@ class Comment extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'content' => 'Content',
-            'status' => 'Status',
-            'create_time' => 'Create Time',
-            'author' => 'Author',
-            'email' => 'Email',
-            'url' => 'Url',
             'post_id' => 'Post ID',
+        ];
+    }
+
+    public function fields()
+    {
+        return [
+            'id',
+            'content',
+            'created_at' => function () {
+                return date('d-m-y H:i', $this->created_at);
+            },
         ];
     }
 }
