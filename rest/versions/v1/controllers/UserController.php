@@ -2,11 +2,22 @@
 namespace rest\versions\v1\controllers;
 
 use common\models\LoginForm;
+use yii\filters\RateLimiter;
 use yii\rest\ActiveController;
 
 class UserController extends ActiveController
 {
-    public $modelClass = 'common\models\User';
+    public $modelClass = 'rest\versions\v1\models\User';
+
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        $behaviors['rateLimiter'] = [
+            'class' => RateLimiter::className(),
+            'enableRateLimitHeaders' => false,
+        ];
+        return $behaviors;
+    }
 
     public function actionLogin()
     {
@@ -14,9 +25,9 @@ class UserController extends ActiveController
 
         if ($model->load(\Yii::$app->getRequest()->getBodyParams(), '') && $model->login()) {
             echo \Yii::$app->user->identity->getAuthKey();
-        } else {
-            return $model;
         }
+
+        return $model;
     }
 
     public function actionIndex()
