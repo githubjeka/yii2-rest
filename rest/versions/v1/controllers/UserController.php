@@ -25,9 +25,9 @@ class UserController extends ActiveController
 
         if ($model->load(\Yii::$app->getRequest()->getBodyParams(), '') && $model->login()) {
             echo \Yii::$app->user->identity->getAuthKey();
+        } else {
+            return $model;
         }
-
-        return $model;
     }
 
     public function actionIndex()
