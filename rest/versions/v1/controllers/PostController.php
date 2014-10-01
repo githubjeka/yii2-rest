@@ -30,11 +30,9 @@ class PostController extends ActiveController
                     'checkAccess' => [$this, 'checkAccess'],
                     'prepareDataProvider' => function ($action) {
                         /* @var $model Post */
-                        $model = new $this->modelClass;
-
+                        $model = $this->modelClass;
                         $query = $model::find();
-
-                        $dataProvider = new ActiveDataProvider(['query' => $query,]);
+                        $dataProvider = new ActiveDataProvider(['query' => $query]);
 
                         $model->setAttribute('title', @$_GET['title']);
                         $query->andFilterWhere(['like', 'title', $model->title]);
