@@ -30,7 +30,7 @@ class PostController extends ActiveController
                     'checkAccess' => [$this, 'checkAccess'],
                     'prepareDataProvider' => function ($action) {
                         /* @var $model Post */
-                        $model = $this->modelClass;
+                        $model = new $this->modelClass;
                         $query = $model::find();
                         $dataProvider = new ActiveDataProvider(['query' => $query]);
 
