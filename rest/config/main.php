@@ -46,8 +46,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => ['v1/post', 'v1/comment', 'v2/post']],
-                'OPTIONS v1/user/login' => 'v1/user/login',
-                'POST v1/user/login' => 'v1/user/login',
+                'v1/user/login' => 'v1/user/login',
                 'POST v2/user/login' => 'v2/user/login',
                 'OPTIONS v2/user/login' => 'v2/user/login',
             ],

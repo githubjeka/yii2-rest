@@ -12,21 +12,35 @@ class UserController extends ActiveController
     public function behaviors()
     {
         $behaviors = parent::behaviors();
+        
         $behaviors['rateLimiter'] = [
             'class' => RateLimiter::className(),
             'enableRateLimitHeaders' => false,
         ];
+        
+        $behaviors['verbs'] = [
+            'class' => \yii\filters\VerbFilter::className(),
+            'actions' => [
+                'login' => ['POST', 'OPTIONS'],
+            ],   
+        ];
+        
         return $behaviors;
     }
 
     public function actionLogin()
     {
-        $model = new LoginForm();
-
-        if ($model->load(\Yii::$app->getRequest()->getBodyParams(), '') && $model->login()) {
-            echo \Yii::$app->user->identity->getAuthKey();
+        if (\Yii::$app->getRequest()->getMethod() === 'OPTIONS') {
+            \Yii::$app->getResponse()->getHeaders()->set('Allow', 'POST');
         } else {
-            return $model;
+             $model = new LoginForm();
+
+            if ($model->load(\Yii::$app->getRequest()->getBodyParams(), '') && $model->login()) {
+                echo \Yii::$app->user->identity->getAuthKey();
+            } else {
+                $model->validate();
+                return $model;
+            }
         }
     }
 
