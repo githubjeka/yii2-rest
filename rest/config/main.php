@@ -25,6 +25,10 @@ return [
             'identityClass' => 'common\models\User',
             'enableSession' => false,
         ],
+        'response' => [
+            'format' => yii\web\Response::FORMAT_JSON,
+            'charset' => 'UTF-8',
+        ],
         'log' => [
             'targets' => [
                 [
