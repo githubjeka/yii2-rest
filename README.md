@@ -9,8 +9,12 @@
 If you do not have [Composer](http://getcomposer.org/), you may install it by following the
 [instructions at getcomposer.org](https://getcomposer.org/doc/00-intro.md).
 
-You can then install the application using the following command:
-`composer create-project --prefer-dist -s dev "githubjeka/rest-yii2" .`
+You can then install the application using the following commands:
+
+```
+composer global require "fxp/composer-asset-plugin:~1.0.0"
+composer create-project --prefer-dist -s dev "githubjeka/rest-yii2" .
+```
 
 ###GETTING STARTED###
 
@@ -18,14 +22,14 @@ After you install the application, you have to conduct the following steps to in
 You only need to do these once for all.
 
 - Create a new database and adjust the components['db'] configuration in `environments/dev/common/config/main-local.php` accordingly.
-- Run command `php init` to initialize the application with a specific environment. Choose **dev**.
+- Run command `php init --env=Development` to initialize the application with a specific environment.
 - Apply migrations with console command ``php yii migrate``. This will create tables needed for the application to work.
 - Set document roots of your Web server:
 
-for rest /path/to/yii-application/rest/web/ and using the URL http://localhost/
-for backend /path/to/yii-application/backend/web/ and using the URL http://backend-localhost/
+for rest `/path/to/yii-application/rest/web/` and using the URL `http://localhost/`
+for backend `/path/to/yii-application/backend/web/` and using the URL `http://backend-localhost/`
 
-Use `demo/demo` to login into the application on http://localhost/v1/user/login. See /rest/config/main.php for more info by URL
+Use `demo/demo` to login into the application on `http://localhost/v1/user/login`. See `/rest/config/main.php` for more info by URL
 
 ###Configuration for Apache###
 Add `.htaccess` to `\rest\web`
