@@ -13,18 +13,14 @@
  * @copyright Copyright (c) 2008 Yii Software LLC
  * @license http://www.yiiframework.com/license/
  */
-
-if (!extension_loaded('mcrypt')) {
-    die('The mcrypt PHP extension is required by Yii2.');
+if (!extension_loaded('openssl')) {
+    die('The OpenSSL PHP extension is required by Yii2.');
 }
-
 $params = getParams();
 $root = str_replace('\\', '/', __DIR__);
 $envs = require("$root/environments/index.php");
 $envNames = array_keys($envs);
-
 echo "Yii Application Initialization Tool v1.0\n\n";
-
 $envName = null;
 if (empty($params['env']) || $params['env'] === '1') {
     echo "Which environment do you want the application to be initialized in?\n\n";
@@ -33,27 +29,22 @@ if (empty($params['env']) || $params['env'] === '1') {
     }
     echo "\n  Your choice [0-" . (count($envs) - 1) . ', or "q" to quit] ';
     $answer = trim(fgets(STDIN));
-
     if (!ctype_digit($answer) || !in_array($answer, range(0, count($envs) - 1))) {
         echo "\n  Quit initialization.\n";
         exit(0);
     }
-
     if (isset($envNames[$answer])) {
         $envName = $envNames[$answer];
     }
 } else {
     $envName = $params['env'];
 }
-
 if (!in_array($envName, $envNames)) {
     $envsList = implode(', ', $envNames);
     echo "\n  $envName is not a valid environment. Try one of the following: $envsList. \n";
     exit(2);
 }
-
 $env = $envs[$envName];
-
 if (empty($params['env'])) {
     echo "\n  Initialize the application under '{$envNames[$answer]}' environment? [yes|no] ";
     $answer = trim(fgets(STDIN));
@@ -62,25 +53,26 @@ if (empty($params['env'])) {
         exit(0);
     }
 }
-
 echo "\n  Start initialization ...\n\n";
 $files = getFileList("$root/environments/{$env['path']}");
+if (isset($env['skipFiles'])) {
+    $skipFiles = $env['skipFiles'];
+    array_walk($skipFiles, function(&$value) use($env, $root) { $value = "$root/$value"; });
+    $files = array_diff($files, array_intersect_key($env['skipFiles'], array_filter($skipFiles, 'file_exists')));
+}
 $all = false;
 foreach ($files as $file) {
     if (!copyFile($root, "environments/{$env['path']}/$file", $file, $all, $params)) {
         break;
     }
 }
-
-$callbacks = ['setCookieValidationKey', 'setWritable', 'setExecutable'];
+$callbacks = ['setCookieValidationKey', 'setWritable', 'setExecutable', 'createSymlink'];
 foreach ($callbacks as $callback) {
     if (!empty($env[$callback])) {
         $callback($root, $env[$callback]);
     }
 }
-
 echo "\n  ... initialization completed.\n\n";
-
 function getFileList($root, $basePath = '')
 {
     $files = [];
@@ -100,7 +92,6 @@ function getFileList($root, $basePath = '')
     closedir($handle);
     return $files;
 }
-
 function copyFile($root, $source, $target, &$all, $params)
 {
     if (!is_file($root . '/' . $source)) {
@@ -117,8 +108,6 @@ function copyFile($root, $source, $target, &$all, $params)
         } else {
             echo "      exist $target\n";
             echo "            ...overwrite? [Yes|No|All|Quit] ";
-
-
             $answer = !empty($params['overwrite']) ? $params['overwrite'] : trim(fgets(STDIN));
             if (!strncasecmp($answer, 'q', 1)) {
                 return false;
@@ -144,7 +133,6 @@ function copyFile($root, $source, $target, &$all, $params)
     file_put_contents($root . '/' . $target, file_get_contents($root . '/' . $source));
     return true;
 }
-
 function getParams()
 {
     $rawParams = [];
@@ -152,7 +140,6 @@ function getParams()
         $rawParams = $_SERVER['argv'];
         array_shift($rawParams);
     }
-
     $params = [];
     foreach ($rawParams as $param) {
         if (preg_match('/^--(\w+)(=(.*))?$/', $param, $matches)) {
@@ -164,7 +151,6 @@ function getParams()
     }
     return $params;
 }
-
 function setWritable($root, $paths)
 {
     foreach ($paths as $writable) {
@@ -172,7 +158,6 @@ function setWritable($root, $paths)
         @chmod("$root/$writable", 0777);
     }
 }
-
 function setExecutable($root, $paths)
 {
     foreach ($paths as $executable) {
@@ -180,16 +165,23 @@ function setExecutable($root, $paths)
         @chmod("$root/$executable", 0755);
     }
 }
-
 function setCookieValidationKey($root, $paths)
 {
     foreach ($paths as $file) {
         echo "   generate cookie validation key in $file\n";
         $file = $root . '/' . $file;
         $length = 32;
-        $bytes = mcrypt_create_iv($length, MCRYPT_DEV_URANDOM);
+        $bytes = openssl_random_pseudo_bytes($length);
         $key = strtr(substr(base64_encode($bytes), 0, $length), '+/=', '_-.');
         $content = preg_replace('/(("|\')cookieValidationKey("|\')\s*=>\s*)(""|\'\')/', "\\1'$key'", file_get_contents($file));
         file_put_contents($file, $content);
+    }
+}
+function createSymlink($root, $links) {
+    foreach ($links as $link => $target) {
+        echo "      symlink " . $root . "/" . $target . " " . $root . "/" . $link . "\n";
+        //first removing folders to avoid errors if the folder already exists
+        @rmdir($root . "/" . $link);
+        @symlink($root . "/" . $target, $root . "/" . $link);
     }
 }
