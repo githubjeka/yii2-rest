@@ -19,7 +19,7 @@ class User extends CommonUser implements RateLimitInterface
             return [1, 30];
         }
 
-        return [1, 1];
+        return [2, 1];
     }
 
     /**

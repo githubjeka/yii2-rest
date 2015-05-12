@@ -2,6 +2,7 @@
 
 namespace tests\codeception\common\_support;
 
+use tests\codeception\common\fixtures\PostFixture;
 use tests\codeception\common\fixtures\UserFixture;
 use Codeception\Module;
 use yii\test\FixtureTrait;
@@ -54,6 +55,9 @@ class FixtureHelper extends Module
             'user' => [
                 'class' => UserFixture::className(),
                 'dataFile' => '@tests/codeception/common/fixtures/data/init_login.php',
+            ],
+            'post' => [
+                'class' => PostFixture::className(),
             ],
         ];
     }
