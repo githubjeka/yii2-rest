@@ -2,53 +2,27 @@
 namespace rest\versions\v1\controllers;
 
 use common\models\LoginForm;
-use yii\filters\RateLimiter;
-use yii\rest\ActiveController;
+use yii\rest\Controller;
 
-class UserController extends ActiveController
+/**
+ * Class UserController
+ * @package rest\versions\v1\controllers
+ */
+class UserController extends Controller
 {
-    public $modelClass = 'rest\versions\v1\models\User';
-
-    public function behaviors()
-    {
-        $behaviors = parent::behaviors();
-        
-        $behaviors['rateLimiter'] = [
-            'class' => RateLimiter::className(),
-            'enableRateLimitHeaders' => false,
-        ];
-        
-        $behaviors['verbs'] = [
-            'class' => \yii\filters\VerbFilter::className(),
-            'actions' => [
-                'login' => ['POST', 'OPTIONS'],
-            ],   
-        ];
-        
-        return $behaviors;
-    }
-
+    /**
+     * This method implemented to demonstrate the receipt of the token.
+     * Do not use it on production systems.
+     * @return string AuthKey or model with errors
+     */
     public function actionLogin()
     {
-        if (\Yii::$app->getRequest()->getMethod() === 'OPTIONS') {
-            \Yii::$app->getResponse()->getHeaders()->set('Allow', 'POST');
+        $model = new LoginForm();
+
+        if ($model->load(\Yii::$app->getRequest()->getBodyParams(), '') && $model->login()) {
+            return \Yii::$app->user->identity->getAuthKey();
         } else {
-             $model = new LoginForm();
-
-            if ($model->load(\Yii::$app->getRequest()->getBodyParams(), '') && $model->login()) {
-                echo \Yii::$app->user->identity->getAuthKey();
-            } else {
-                $model->validate();
-                return $model;
-            }
+            return $model;
         }
-    }
-
-    public function actionIndex()
-    {
-        if (\Yii::$app->user->isGuest) {
-            throw new \HttpHeaderException();
-        }
-        return \Yii::$app->user->getId();
     }
 }
