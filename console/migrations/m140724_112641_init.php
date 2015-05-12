@@ -30,6 +30,7 @@ class m140724_112641_init extends Migration
 
         $user = new \common\models\User();
         $user->username = 'demo';
+        $user->email = 'demo@mail.net';
         $user->generateAuthKey();
         $user->setPassword('demo');
         return $user->insert();
