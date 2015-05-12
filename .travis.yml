@@ -1,7 +1,5 @@
 language: php
 php:
-  - 5.4
-  - 5.5
   - 5.6
 
 # faster builds on new travis setup not using sudo
@@ -21,18 +19,19 @@ install:
  - travis_retry composer global require "codeception/codeception=2.0.*" "codeception/specify=*" "codeception/verify=*"
 # setup application:
  - |
+   ls -l
    chmod a+x ./init
    ./init --env=Development
-   sed -i s/root/travis/ common/config/main-local.php
-   sed -i "s/'cookieValidationKey' => ''/'cookieValidationKey' => 'testkey'/" backend/config/main.php
-   cd tests/codeception/backend && codecept build
-   cd ../common && codecept build
-   cd ../console && codecept build
-   cd ../rest && codecept build
-   cd ../../../
+   sed -i s/root/travis/ ./common/config/main-local.php
+   sed -i "s/'cookieValidationKey' => ''/'cookieValidationKey' => 'testkey'/" ./backend/config/main.php
+   cd ./tests/codeception/backend && codecept build
+   cd ./../common && codecept build
+   cd ./../console && codecept build
+   cd ./../rest && codecept build
+   cd ./../../../
 
 before_script:
-  - cd tests/codeception/bin && php yii migrate --interactive=0 && cd ../../..
+  - cd ./tests/codeception/bin && php yii migrate --interactive=0 && cd ../../..
 
 script:
  - |
