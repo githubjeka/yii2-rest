@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/githubjeka/yii2-rest.svg)](https://travis-ci.org/githubjeka/yii2-rest)
 
+[Demo Server](https://yii2-rest-githubjeka.c9.io/rest/web/)
+
 ###INSTALLATION###
 
 **Install via Composer**
