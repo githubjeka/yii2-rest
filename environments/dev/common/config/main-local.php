@@ -16,7 +16,4 @@ return [
             'charset' => 'utf8',
         ],
     ],
-    'params' => [
-        'adminEmail' => 'admin@example.com',
-    ],
 ];
