@@ -1,10 +1,10 @@
-## Test REST API application on [Yii2](https://github.com/yiisoft/yii2)
+## TEST REST API APPLICATION ON [Yii2](https://github.com/yiisoft/yii2)
 
 [![Build Status](https://travis-ci.org/githubjeka/yii2-rest.svg)](https://travis-ci.org/githubjeka/yii2-rest)
 
 [Demo Server](https://yii2-rest-githubjeka.c9.io/rest/web/)
 
-###INSTALLATION###
+###INSTALLATION
 
 **Install via Composer**
 
@@ -18,7 +18,7 @@ composer global require "fxp/composer-asset-plugin:~1.0.0"
 composer create-project --prefer-dist -s dev "githubjeka/rest-yii2" .
 ```
 
-###GETTING STARTED###
+###GETTING STARTED
 
 After you install the application, you have to conduct the following steps to initialize the installed application.
 You only need to do these once for all.
@@ -34,55 +34,38 @@ for backend `/path/to/yii-application/backend/web/` and using the URL `http://ba
 Use `demo/demo` to login into the application on [http://localhost/v1/user/login](http://localhost/v1/user/login). See 
 [`/rest/config/main.php`](/rest/config/main.php) for more info by URL
 
-###Configuration for Apache###
-Add `.htaccess` to `\rest\web`
+###URL RULE
+
+See [rest/config/main.php](rest/config/main.php)
+
+API available:
+
+```php
+// version 1
+OPTIONS /index.php?r=v1/user/login
+POST /index.php?r=v1/user/login
+
+OPTIONS /index.php?r=v1/posts
+GET /index.php?r=v1/posts
+GET /index.php?r=v1/posts/ID
+POST /index.php?r=v1/posts
+PUT /index.php?r=v1/posts/ID
+DELETE /index.php?r=v1/posts/ID
+
+OPTIONS /index.php?r=v1/comments
+GET /index.php?r=v1/comments
+GET /index.php?r=v1/comments/ID
+POST /index.php?r=v1/comments
+PUT /index.php?r=v1/comments/ID
+DELETE /index.php?r=v1/comments/ID
+
+//version 2
+OPTIONS /index.php?r=v2/user/login
+POST /index.php?r=v2/user/login
 ```
-RewriteEngine on
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule (.*) index.php [L]
-```
+You can hide `index.php` from URL. For that see [server.md](server.md)
 
-###Configuration for Nginx###
-```
-include common/upstream;
+### ADDITIONALLY
 
-server {
-    charset utf-8;
-    client_max_body_size 128M;
-
-    listen 80; ## listen for ipv4
-    #listen [::]:80 default_server ipv6only=on; ## listen for ipv6
-
-    server_name localhost;
-    root        /var/www/rest/rest/web;
-    index       index.php;
-
-    #access_log  /var/www/log/rest-access.log main;
-    #error_log   /var/www/log/rest-error.log;
-
-    location / {
-        # Redirect everything that isn't a real file to index.php
-        try_files $uri $uri/ /index.php?$args;
-    }
-
-    # uncomment to avoid processing of calls to non-existing static files by Yii
-    location ~ \.(js|css|png|jpg|gif|swf|ico|pdf|mov|fla|zip|rar)$ {
-        try_files $uri =404;
-    }
-    #error_page 404 /404.html;
-
-    location ~ \.php$ {
-        include common/php-fpm;
-        try_files $uri =404;
-    }
-
-    location ~ /\.(ht|svn|git) {
-        deny all;
-    }
-}
-```
-[More information ... ](https://github.com/githubjeka/angular-yii2)
-
-**TBD..**
+[See client on AngularJS](https://github.com/githubjeka/angular-yii2)
