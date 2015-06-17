@@ -116,7 +116,9 @@ class Post extends ActiveRecord
     {
         if (parent::beforeSave($insert)) {
             if ($insert) {
-                $this->author_id = \Yii::$app->user->identity->getId();
+                if (empty($this->author_id)) {
+                    $this->author_id = \Yii::$app->user->identity->getId();
+                }
             }
             return true;
         } else {
