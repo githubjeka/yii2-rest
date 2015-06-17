@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Application configuration for backend unit tests
+ * Application configuration for rest unit tests
  */
 return yii\helpers\ArrayHelper::merge(
     require(YII_APP_BASE_PATH . '/common/config/main.php'),

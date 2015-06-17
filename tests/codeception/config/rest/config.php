@@ -1,6 +1,6 @@
 <?php
 /**
- * Application configuration for all backend test types
+ * Application configuration for all rest test types
  */
 return [
     'components' => [

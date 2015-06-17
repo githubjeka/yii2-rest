@@ -16,8 +16,7 @@ return [
             'class' => 'rest\versions\v1\RestModule'
         ],
         'v2' => [
-            'basePath' => '@rest/modules/v2',
-            'controllerNamespace' => 'v2\controllers',
+            'class' => 'rest\versions\v2\RestModule'
         ],
     ],
     'components' => [

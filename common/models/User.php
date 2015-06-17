@@ -1,10 +1,10 @@
 <?php
 namespace common\models;
 use Yii;
-use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use yii\filters\RateLimitInterface;
 /**
  * User model
  *
@@ -19,7 +19,7 @@ use yii\web\IdentityInterface;
  * @property integer $updated_at
  * @property string $password write-only password
  */
-class User extends ActiveRecord implements IdentityInterface
+class User extends ActiveRecord implements IdentityInterface , RateLimitInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
@@ -165,5 +165,34 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+    /**
+     * @inheritdoc
+     */
+    public function getRateLimit($request, $action)
+    {
+        if (($request->isPut || $request->isDelete || $request->isPost)) {
+            return [Yii::$app->params['maxRateLimit'], Yii::$app->params['perRateLimit']];
+        }
+
+        return [Yii::$app->params['maxGetRateLimit'], Yii::$app->params['perGetRateLimit']];
+    }
+    /**
+     * @inheritdoc
+     */
+    public function loadAllowance($request, $action)
+    {
+        return [
+            \Yii::$app->cache->get($request->getPathInfo() . $request->getMethod() . '_remaining'),
+            \Yii::$app->cache->get($request->getPathInfo() . $request->getMethod() . '_ts')
+        ];
+    }
+    /**
+     * @inheritdoc
+     */
+    public function saveAllowance($request, $action, $allowance, $timestamp)
+    {
+        \Yii::$app->cache->set($request->getPathInfo() . $request->getMethod() . '_remaining', $allowance);
+        \Yii::$app->cache->set($request->getPathInfo() . $request->getMethod() . '_ts', $timestamp);
     }
 }

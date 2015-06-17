@@ -1,8 +1,9 @@
 <?php
-namespace rest\versions\v1;
+namespace rest\versions\v2;
 
 use yii\base\Module;
 
 class RestModule extends Module
 {
+
 }

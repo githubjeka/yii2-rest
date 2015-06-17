@@ -10,6 +10,7 @@ $I->seeResponseCodeIs(401);
 $I->seeResponseIsJson();
 
 $I->wantTo('create post via API');
+$I->haveHttpHeader('Content-Type', 'application/json');
 $I->sendPOST(
     '/v1/posts' . $token,
     ['title' => 'My first post', 'content' => 'There are many words....', 'status' => 2]

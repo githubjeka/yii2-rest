@@ -111,4 +111,16 @@ class Post extends ActiveRecord
     {
         return $this->hasMany(Comment::className(), ['post_id' => 'id']);
     }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($insert) {
+                $this->author_id = \Yii::$app->user->identity->getId();
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

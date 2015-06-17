@@ -2,7 +2,7 @@
 defined('YII_APP_BASE_PATH') or define('YII_APP_BASE_PATH', dirname(dirname(dirname(dirname(__DIR__)))));
 
 /**
- * Application configuration for backend acceptance tests
+ * Application configuration for rest acceptance tests
  */
 return yii\helpers\ArrayHelper::merge(
     require(YII_APP_BASE_PATH . '/common/config/main.php'),

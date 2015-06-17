@@ -6,7 +6,7 @@ use yii\rest\ActiveController;
 
 class CommentController extends ActiveController
 {
-    public $modelClass = 'rest\versions\v1\models\Comment';
+    public $modelClass = 'common\models\Comment';
 
     public function behaviors()
     {
