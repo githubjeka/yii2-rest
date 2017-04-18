@@ -1,4 +1,4 @@
-###Configuration for Apache
+### Configuration for Apache
 
 ```
 RewriteEngine on
@@ -8,7 +8,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule (.*) index.php [L]
 ```
 
-###Configuration for Nginx
+### Configuration for Nginx
 ```
 include common/upstream;
 
