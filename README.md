@@ -4,7 +4,7 @@
 
 [Demo Server](https://yii2-rest-githubjeka.c9.io/rest/web/)
 
-###INSTALLATION
+### INSTALLATION
 
 **Install via Composer**
 
@@ -18,7 +18,7 @@ composer global require "fxp/composer-asset-plugin:~1.0.0"
 composer create-project --prefer-dist -s dev "githubjeka/rest-yii2" .
 ```
 
-###GETTING STARTED
+### GETTING STARTED
 
 After you install the application, you have to conduct the following steps to initialize the installed application.
 You only need to do these once for all.
@@ -34,7 +34,7 @@ for backend `/path/to/yii-application/backend/web/` and using the URL `http://ba
 Use `demo/demo` to login into the application on [http://localhost/v1/user/login](http://localhost/v1/user/login). See 
 [`/rest/config/main.php`](/rest/config/main.php) for more info by URL
 
-###URL RULE
+### URL RULE
 
 See [rest/config/main.php](rest/config/main.php)
 
