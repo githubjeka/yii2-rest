@@ -32,4 +32,4 @@ script:
  - |
      php -S localhost:8080 > /dev/null 2>&1 &
      cd tests
-     codecept run
+     ./../vendor/bin/codecept run
